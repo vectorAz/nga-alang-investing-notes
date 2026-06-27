@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Search the synchronized NGA OP-post JSONL."""
+"""Search the NGA Alang historical replies JSONL."""
 
 from __future__ import annotations
 
@@ -16,6 +16,8 @@ def main() -> int:
     parser.add_argument("--since")
     parser.add_argument("--until")
     parser.add_argument("--pid", type=int)
+    parser.add_argument("--archive-id")
+    parser.add_argument("--source")
     parser.add_argument("--limit", type=int, default=20)
     args = parser.parse_args()
     needle = args.query.casefold()
@@ -26,9 +28,13 @@ def main() -> int:
             date = post.get("postdate") or ""
             if args.pid is not None and post.get("pid") != args.pid:
                 continue
+            if args.archive_id and post.get("archive_id") != args.archive_id:
+                continue
+            if args.source and post.get("source") != args.source:
+                continue
             if args.since and date < args.since:
                 continue
-            if args.until and date > args.until + " 99:99:99":
+            if args.until and date > args.until + " 23:59:59":
                 continue
             haystack = "\n".join(
                 [post.get("plain_text") or "", post.get("raw_bbcode") or "", post.get("subject") or ""]
@@ -36,10 +42,15 @@ def main() -> int:
             if needle and needle not in haystack:
                 continue
             preview = " ".join((post.get("plain_text") or "").split())[:500]
-            print(
-                f'[{post.get("postdate")}] PID {post.get("pid")} '
-                f'#{post.get("filtered_ordinal")}\n{post.get("source_url")}\n{preview}\n'
+            record_id = (
+                f'PID {post.get("pid")}'
+                if post.get("pid")
+                else f'ARCHIVE {post.get("archive_id")}'
             )
+            location = post.get("source_url") or ""
+            if post.get("source_sheet") and post.get("source_row"):
+                location += f' ({post.get("source_sheet")} R{post.get("source_row")})'
+            print(f'[{date}] {record_id} #{post.get("filtered_ordinal")}\n{location}\n{preview}\n')
             found += 1
             if found >= args.limit:
                 break

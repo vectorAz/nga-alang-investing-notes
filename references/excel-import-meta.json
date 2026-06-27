@@ -1,0 +1,33 @@
+{
+    "source_workbook":  "狼大回复汇总+20260626-1410\u0026往期.xlsx",
+    "source_path":  "C:\\Users\\1\\Desktop\\狼大回复汇总+20260626-1410\u0026往期.xlsx",
+    "imported_at":  "2026-06-27T13:34:20",
+    "total_unique_posts":  25160,
+    "sheets":  [
+                   {
+                       "sheet":  "2016-2017",
+                       "unique_posts":  4791
+                   },
+                   {
+                       "sheet":  "2020",
+                       "unique_posts":  7226
+                   },
+                   {
+                       "sheet":  "2022",
+                       "unique_posts":  3859
+                   },
+                   {
+                       "sheet":  "2025",
+                       "unique_posts":  5792
+                   },
+                   {
+                       "sheet":  "2026",
+                       "unique_posts":  3393
+                   },
+                   {
+                       "sheet":  "最新一周0626",
+                       "unique_posts":  99
+                   }
+               ],
+    "note":  "Excel archive is authoritative for historical replies. Records do not include NGA PID unless present in the text."
+}

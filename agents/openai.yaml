@@ -1,4 +1,4 @@
 interface:
-  display_name: "阿狼科技投资帖知识库"
-  short_description: "完整检索、引用并更新阿狼楼主的公开投资发言与方法框架"
-  default_prompt: "使用 $nga-alang-investing-notes 检索楼主原话，并按其逻辑分析我提出的问题。"
+  display_name: "阿狼历史回复知识库"
+  short_description: "检索阿狼公开回复，按日期和记录标识归纳投资框架"
+  default_prompt: "使用 $nga-alang-investing-notes 检索阿狼历史原话，给出日期和记录标识，并区分原文、归纳和当前推演。"
