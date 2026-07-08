@@ -2,11 +2,11 @@
   "tid": 45974302,
   "authorid": 150058,
   "subject": "自立自强，科学技术打头阵",
-  "thread_replies": 179161,
-  "filtered_rows_reported": 3665,
-  "posts_written": 3651,
+  "thread_replies": 182741,
+  "filtered_rows_reported": 3696,
+  "posts_written": 3682,
   "unavailable_or_deleted_rows": 14,
-  "total_pages": 184,
+  "total_pages": 185,
   "pages_fetched": [
     1,
     2,
@@ -191,9 +191,10 @@
     181,
     182,
     183,
-    184
+    184,
+    185
   ],
   "complete": true,
-  "updated_at": "2026-07-06T20:59:57.921545+08:00",
+  "updated_at": "2026-07-08T21:57:44.384811+08:00",
   "source": "https://bbs.nga.cn/read.php?tid=45974302&authorid=150058&__output=11"
 }
