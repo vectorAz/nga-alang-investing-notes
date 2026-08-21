@@ -1,0 +1,23 @@
+{
+  "primary_thread": {
+    "tid": 47288722,
+    "op_uid": 150058
+  },
+  "priority_users": [
+    60916468,
+    67145714
+  ],
+  "priority_aliases": {
+    "60916468": "兔",
+    "67145714": "P"
+  },
+  "related_threads": [],
+  "user_threads": {
+    "60916468": [],
+    "67145714": []
+  },
+  "legacy_thread": {
+    "tid": 45974302,
+    "op_uid": 150058
+  }
+}
