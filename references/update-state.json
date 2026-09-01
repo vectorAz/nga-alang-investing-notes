@@ -38,7 +38,7 @@
     }
   ],
   "primary_thread_url": "https://bbs.nga.cn/read.php?tid=47288722",
-  "posts_written": 4698,
+  "posts_written": 4762,
   "sources": [
     {
       "tid": 47288722,
@@ -46,10 +46,10 @@
       "author": "-阿狼-",
       "role": "op",
       "subject": "自立自强，科学技术打头阵----救赎版",
-      "rows_reported": 674,
-      "posts_written": 672,
+      "rows_reported": 713,
+      "posts_written": 711,
       "unavailable_or_deleted_rows": 2,
-      "total_pages": 34,
+      "total_pages": 36,
       "pages_present": [
         1,
         2,
@@ -84,7 +84,9 @@
         31,
         32,
         33,
-        34
+        34,
+        35,
+        36
       ],
       "complete": true,
       "source_file": "references/sources/tid-47288722-uid-150058.jsonl",
@@ -96,10 +98,10 @@
       "author": "UID:60916468",
       "role": "priority_user",
       "subject": "自立自强，科学技术打头阵----救赎版",
-      "rows_reported": 208,
-      "posts_written": 208,
+      "rows_reported": 221,
+      "posts_written": 221,
       "unavailable_or_deleted_rows": 0,
-      "total_pages": 11,
+      "total_pages": 12,
       "pages_present": [
         1,
         2,
@@ -111,7 +113,8 @@
         8,
         9,
         10,
-        11
+        11,
+        12
       ],
       "complete": true,
       "source_file": "references/sources/tid-47288722-uid-60916468.jsonl",
@@ -123,8 +126,8 @@
       "author": "UID:67145714",
       "role": "priority_user",
       "subject": "自立自强，科学技术打头阵----救赎版",
-      "rows_reported": 127,
-      "posts_written": 127,
+      "rows_reported": 139,
+      "posts_written": 139,
       "unavailable_or_deleted_rows": 0,
       "total_pages": 7,
       "pages_present": [
@@ -146,5 +149,5 @@
   "cross_forum_complete": false,
   "cross_forum_note": "NGA searchpost requires login and can be rate-limited. The database covers the primary thread plus cumulatively registered threads found in the configured search window.",
   "authenticated_discovery": false,
-  "updated_at": "2026-08-31T17:13:29.636297+08:00"
+  "updated_at": "2026-09-01T16:35:15.490921+08:00"
 }
