@@ -33,10 +33,20 @@ LEGACY = REFS / "legacy"
 
 DEFAULT_CONFIG = {
     "primary_thread": {"tid": 47288722, "op_uid": 150058},
-    "priority_users": [60916468, 67145714],
-    "priority_aliases": {"60916468": "兔", "67145714": "P"},
+    "priority_users": [60916468, 67145714, 39700287, 65329649],
+    "priority_aliases": {
+        "60916468": "兔",
+        "67145714": "P",
+        "39700287": "UID39700287",
+        "65329649": "UID65329649",
+    },
     "related_threads": [],
-    "user_threads": {"60916468": [], "67145714": []},
+    "user_threads": {
+        "60916468": [],
+        "67145714": [],
+        "39700287": [],
+        "65329649": [],
+    },
     "legacy_thread": {"tid": 45974302, "op_uid": 150058},
 }
 
@@ -177,6 +187,103 @@ def read_url(tid: int, uid: int, page: int) -> str:
     return f"{BASE}/read.php?{params}"
 
 
+def read_html_url(tid: int, uid: int, page: int) -> str:
+    params = urllib.parse.urlencode(
+        {"tid": tid, "authorid": uid, "page": page, "opt": 262144}
+    )
+    return f"{BASE}/read.php?{params}"
+
+
+def fetch_thread_html_page(tid: int, uid: int, page: int) -> dict:
+    url = read_html_url(tid, uid, page)
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    with urllib.request.urlopen(req, timeout=35) as response:
+        payload = response.read().decode("gb18030", errors="replace")
+    soup = BeautifulSoup(payload, "html.parser")
+    rows = []
+    username = ""
+    for index, node in enumerate(soup.select("tr.postrow")):
+        slot_match = re.search(r"(\d+)$", str(node.get("id") or ""))
+        slot = slot_match.group(1) if slot_match else str(index)
+        anchor = node.find(id=re.compile(r"^pid\d+Anchor$"))
+        content = node.find(id=f"postcontent{slot}") or node.select_one(".postcontent")
+        postdate = node.find(id=f"postdate{slot}")
+        author = node.find(id=f"postauthor{slot}")
+        if not anchor or not content or not postdate:
+            continue
+        pid_match = re.match(r"pid(\d+)Anchor", str(anchor.get("id") or ""))
+        if not pid_match:
+            continue
+        date_text = postdate.get_text(" ", strip=True)
+        try:
+            timestamp = int(
+                dt.datetime.strptime(date_text, "%Y-%m-%d %H:%M")
+                .replace(tzinfo=dt.timezone(dt.timedelta(hours=8)))
+                .timestamp()
+            )
+        except ValueError:
+            timestamp = 0
+        if author and not username:
+            username = repair_text(author.get_text(" ", strip=True))
+        raw = repair_text(content.decode_contents())
+        rows.append(
+            {
+                "pid": int(pid_match.group(1)),
+                "tid": tid,
+                "authorid": uid,
+                "postdate": date_text,
+                "postdatetimestamp": timestamp,
+                "content": raw,
+                "content_length": len(strip_html(raw)),
+                "lou": (page - 1) * PAGE_SIZE + index,
+            }
+        )
+
+    pager = re.search(
+        r"var\s+__PAGE\s*=\s*\{0:.*?,1:(\d+),2:\d+,3:(\d+)\}", payload, flags=re.S
+    )
+    if pager:
+        total_pages = int(pager.group(1))
+        page_size = int(pager.group(2))
+        total_rows = total_pages * page_size
+        if page == 1 and total_pages > 1:
+            try:
+                last_req = urllib.request.Request(
+                    read_html_url(tid, uid, total_pages), headers={"User-Agent": UA}
+                )
+                with urllib.request.urlopen(last_req, timeout=35) as response:
+                    last_payload = response.read().decode("gb18030", errors="replace")
+                last_count = len(BeautifulSoup(last_payload, "html.parser").select("tr.postrow"))
+                if last_count:
+                    total_rows = (total_pages - 1) * page_size + last_count
+            except (OSError, urllib.error.URLError):
+                pass
+    else:
+        total_rows = (page - 1) * PAGE_SIZE + len(rows)
+    title = soup.title.get_text(" ", strip=True) if soup.title else ""
+    subject_match = re.search(r"在\s*-\s*(.*?)\s*-\s*中的回复", title)
+    subject = subject_match.group(1) if subject_match else title
+    return {
+        "data": {
+            "__R": rows,
+            "__ROWS": total_rows,
+            "__T": {"tid": tid, "subject": subject, "this_visit_rows": total_rows},
+            "__U": {str(uid): {"uid": uid, "username": username or f"UID:{uid}"}},
+        }
+    }
+
+
+def fetch_thread_page(tid: int, uid: int, page: int) -> dict:
+    try:
+        return fetch_json(read_url(tid, uid, page))
+    except RuntimeError as exc:
+        print(
+            f"JSON fetch failed for tid={tid} uid={uid} page={page}; using HTML fallback: {exc}",
+            file=sys.stderr,
+        )
+        return fetch_thread_html_page(tid, uid, page)
+
+
 def rows_from(data: dict) -> list[dict]:
     rows = data.get("data", {}).get("__R", [])
     if isinstance(rows, dict):
@@ -278,7 +385,7 @@ def sync_source(tid: int, uid: int, role: str, quick: bool, workers: int) -> dic
     cache_dir.mkdir(parents=True, exist_ok=True)
     first_cache = cache_dir / "page-0001.json"
     try:
-        first = fetch_json(read_url(tid, uid, 1))
+        first = fetch_thread_page(tid, uid, 1)
     except Exception:
         if not quick or not first_cache.exists():
             raise
@@ -299,7 +406,7 @@ def sync_source(tid: int, uid: int, role: str, quick: bool, workers: int) -> dic
     remaining = [page for page in page_numbers if page != 1]
     with concurrent.futures.ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
         futures = {
-            pool.submit(fetch_json, read_url(tid, uid, page)): page for page in remaining
+            pool.submit(fetch_thread_page, tid, uid, page): page for page in remaining
         }
         for future in concurrent.futures.as_completed(futures):
             page = futures[future]
