@@ -33,9 +33,10 @@ LEGACY = REFS / "legacy"
 
 DEFAULT_CONFIG = {
     "primary_thread": {"tid": 47288722, "op_uid": 150058},
-    "priority_users": [60916468, 67145714, 39700287, 65329649],
+    "priority_users": [60916468, 67142257, 67145714, 39700287, 65329649],
     "priority_aliases": {
         "60916468": "兔",
+        "67142257": "兰斯洛t",
         "67145714": "P",
         "39700287": "UID39700287",
         "65329649": "UID65329649",
@@ -382,14 +383,19 @@ def source_paths(tid: int, uid: int) -> tuple[Path, Path]:
 
 def sync_source(tid: int, uid: int, role: str, quick: bool, workers: int) -> dict:
     source_file, cache_dir = source_paths(tid, uid)
+    previous_posts = []
+    if source_file.exists():
+        previous_posts = [json.loads(line) for line in source_file.read_text(encoding="utf-8").splitlines() if line.strip()]
     cache_dir.mkdir(parents=True, exist_ok=True)
     first_cache = cache_dir / "page-0001.json"
+    cached_fallback_pages = []
     try:
         first = fetch_thread_page(tid, uid, 1)
     except Exception:
         if not quick or not first_cache.exists():
             raise
         first = json.loads(first_cache.read_text(encoding="utf-8"))
+        cached_fallback_pages.append(1)
         print(f"using cached tid={tid} uid={uid} page=1 after repeated fetch failure", file=sys.stderr)
     data = first.get("data", {})
     if data.get("__MESSAGE") or not data.get("__T"):
@@ -400,7 +406,8 @@ def sync_source(tid: int, uid: int, role: str, quick: bool, workers: int) -> dic
     all_pages = list(range(1, total_pages + 1))
     page_numbers = all_pages
     if quick:
-        page_numbers = sorted(set([1] + list(range(max(1, total_pages - 9), total_pages + 1))))
+        missing_pages = [page for page in all_pages if not (cache_dir / f"page-{page:04d}.json").exists()]
+        page_numbers = sorted(set([1] + list(range(max(1, total_pages - 9), total_pages + 1)) + missing_pages))
 
     results = {1: first}
     remaining = [page for page in page_numbers if page != 1]
@@ -417,6 +424,7 @@ def sync_source(tid: int, uid: int, role: str, quick: bool, workers: int) -> dic
                 if not quick or not cached_page.exists():
                     raise
                 results[page] = json.loads(cached_page.read_text(encoding="utf-8"))
+                cached_fallback_pages.append(page)
                 print(
                     f"using cached tid={tid} uid={uid} page={page} after repeated fetch failure",
                     file=sys.stderr,
@@ -424,14 +432,25 @@ def sync_source(tid: int, uid: int, role: str, quick: bool, workers: int) -> dic
             print(f"fetched tid={tid} uid={uid} page={page}/{total_pages}", file=sys.stderr)
 
     for page, payload in results.items():
+        page_data = payload.get("data", {})
+        if page_data.get("__MESSAGE") or int(page_data.get("__T", {}).get("tid") or 0) != tid:
+            raise RuntimeError(f"Invalid thread payload for TID {tid}, UID {uid}, page {page}")
+        if page_data.get("__PAGE") is not None and int(page_data["__PAGE"]) != page:
+            raise RuntimeError(f"Wrong page returned for TID {tid}, UID {uid}, page {page}")
         (cache_dir / f"page-{page:04d}.json").write_text(
             json.dumps(payload, ensure_ascii=False), encoding="utf-8"
         )
     if quick:
         for path in cache_dir.glob("page-*.json"):
             page = int(path.stem.split("-")[-1])
-            if page not in results:
-                results[page] = json.loads(path.read_text(encoding="utf-8"))
+            if page in all_pages and page not in results:
+                cached = json.loads(path.read_text(encoding="utf-8"))
+                cached_data = cached.get("data", {})
+                if int(cached_data.get("__T", {}).get("tid") or 0) != tid:
+                    raise RuntimeError(f"Invalid cached thread for TID {tid}, UID {uid}, page {page}")
+                if cached_data.get("__PAGE") is not None and int(cached_data["__PAGE"]) != page:
+                    raise RuntimeError(f"Wrong cached page for TID {tid}, UID {uid}, page {page}")
+                results[page] = cached
 
     subject = repair_text(html.unescape(str(meta.get("subject") or "")))
     author = user_name(first, uid)
@@ -445,7 +464,14 @@ def sync_source(tid: int, uid: int, role: str, quick: bool, workers: int) -> dic
             if pid in seen:
                 continue
             seen.add(pid)
-            posts.append(normalize(row, tid, uid, author, role, subject))
+            post = normalize(row, tid, uid, author, role, subject)
+            post["visibility_at_sync"] = "visible"
+            posts.append(post)
+    visible_posts_count = len(posts)
+    retained_posts = [post for post in previous_posts if int(post.get("pid") or 0) not in seen]
+    for post in retained_posts:
+        post["visibility_at_sync"] = "not_returned"
+    posts.extend(retained_posts)
     posts.sort(key=lambda p: (int(p.get("postdatetimestamp") or 0), int(p.get("pid") or 0)))
     source_file.parent.mkdir(parents=True, exist_ok=True)
     with source_file.open("w", encoding="utf-8", newline="\n") as handle:
@@ -462,11 +488,17 @@ def sync_source(tid: int, uid: int, role: str, quick: bool, workers: int) -> dic
         "role": role,
         "subject": subject,
         "rows_reported": total_rows,
+        "row_count_basis": "json_api" if "__PAGE" in data else "html_pager_estimate",
         "posts_written": len(posts),
-        "unavailable_or_deleted_rows": max(0, total_rows - len(posts)),
+        "visible_posts_written": visible_posts_count,
+        "previously_seen_not_returned": len(retained_posts),
+        "unresolved_row_difference": max(0, total_rows - visible_posts_count),
+        "row_difference_note": "A count difference is not proof of deletion; inspect page and row diagnostics.",
         "total_pages": total_pages,
         "pages_present": pages_present,
-        "complete": pages_present == all_pages,
+        "pages_complete": set(all_pages).issubset(pages_present),
+        "cached_fallback_pages": sorted(cached_fallback_pages),
+        "complete": set(all_pages).issubset(pages_present) and not cached_fallback_pages,
         "source_file": str(source_file.relative_to(ROOT)).replace("\\", "/"),
         "source_url": f"{BASE}/read.php?tid={tid}&authorid={uid}&__output=11",
     }

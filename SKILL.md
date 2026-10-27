@@ -1,6 +1,6 @@
 ---
 name: nga-alang-investing-notes
-description: 检索、引用、更新和归纳 NGA 主题 47288722 中楼主“-阿狼-”(UID 150058)及重点用户 UID 60916468、67145714、39700287、65329649 的发言，并累计追踪这些重点用户在已发现或手工登记的其他主题中的公开发言；同时保留旧主题 45974302 的阿狼历史资料。用于用户提到阿狼、狼大、新救赎版帖子、重点用户、科技股复盘、做 T、止盈止损、趋势波段、龙头风向标，或要求更新、核对、引用原话时。
+description: 检索、引用、更新和归纳 NGA 主题 47288722 中楼主“-阿狼-”(UID 150058)及重点用户 UID 60916468、67142257（兰斯洛t）、67145714、39700287、65329649 的发言，并累计追踪这些重点用户在已发现或手工登记的其他主题中的公开发言；同时保留旧主题 45974302 的阿狼历史资料。用于用户提到阿狼、狼大、新救赎版帖子、重点用户、科技股复盘、做 T、止盈止损、趋势波段、龙头风向标，或要求更新、核对、引用原话时。
 ---
 
 # 阿狼及重点用户 NGA 资料库
@@ -47,11 +47,24 @@ https://bbs.nga.cn/thread.php?searchpost=1&authorid=65329649
 python scripts/update_thread.py --discovery-pages 30
 ```
 
-快速刷新每个来源最近十页；只有缓存页齐全时该来源才会标记完整：
+快速刷新每个来源最近十页，并补抓此前缺失的所有历史页；回退到旧缓存不算本次完整刷新：
 
 ```powershell
 python scripts/update_thread.py --quick
 ```
+
+核对六位已登记作者在主帖内的全部当前可见历史回复：
+
+```powershell
+python scripts/audit_primary.py --data-dir 本地技能目录 --out reports/YYYY-MM-DD
+```
+
+审计会重新抓取每位作者所有分页，检查页号、作者、PID 去重、时间排序以及分页到归档的对应关系，输出 `coverage.json` 和不含正文的 `timeline.csv`。`--cache-only` 只核对已有缓存，不等于联网重新验证。
+
+- `visible_rows_verified=true` 只说明当前返回的可见回复都能在归档中找到，不代表曾存在过的每一次回复均可找回。
+- `server_count_difference` 保留 NGA 报告总数与实际可见唯一 PID 数之间的差额，不擅自将其归因于删帖。
+- 曾抓到、但本次不再返回的记录仍保留在本机来源文件中，并标记 `visibility_at_sync=not_returned`。
+- `source_lou`／`author_ordinal` 为只看作者分页中的位置，不应当作全帖楼层号。
 
 手工登记重点用户出现过的其他主题，并立即同步：
 
@@ -60,7 +73,7 @@ python scripts/update_thread.py --add-thread 主题TID
 python scripts/update_thread.py --add-thread-for 60916468:主题TID
 ```
 
-配置位于 `references/tracking-config.json`。主追踪地址固定为 `https://bbs.nga.cn/read.php?tid=47288722`，楼主 UID 为 150058；重点 UID 为 60916468、67145714、39700287、65329649。更新后检查 `references/update-state.json`：
+配置位于 `references/tracking-config.json`。主追踪地址固定为 `https://bbs.nga.cn/read.php?tid=47288722`，楼主 UID 为 150058；重点 UID 为 60916468、67142257、67145714、39700287、65329649。更新后检查 `references/update-state.json`：
 
 - `complete_for_registered_sources=true` 只表示已登记来源的公开“只看作者”页面抓取完整。
 - `reply_search` 分别记录各重点用户的跨版面检索页数、结果行数、发现主题数、登录要求和错误。

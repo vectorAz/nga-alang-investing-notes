@@ -6,3 +6,13 @@ __pycache__/
 *.pem
 .DS_Store
 Thumbs.db
+
+# Keep newly collected forum bodies and page payloads local.
+# Files already tracked by earlier commits are unaffected by these patterns.
+references/raw-pages*/
+references/sources/
+references/noon-*/
+references/legacy/*.jsonl
+references/full-posts.jsonl
+references/full-posts.md
+references/posts-index.tsv
