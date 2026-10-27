@@ -7,14 +7,18 @@ description: 检索、引用、更新和归纳 NGA 主题 47288722 中楼主“-
 
 ## 检索
 
-先运行检索脚本，再按 PID、TID、UID 或日期读取 `references/full-posts.jsonl` 中的 `raw_bbcode` 核对原文。
+原文统一从随 skill 发布的 `references/originals/` 备份读取，先运行检索脚本，再按 PID、TID、UID 或日期用 `--raw`／`--json` 核对完整原文。不要仅凭检索预览引用，也不要优先读取可能陈旧的 `full-posts.jsonl` 派生副本。备份覆盖全部已收录用户与记录，不代表全站完整回复。
 
 ```powershell
 python scripts/search_posts.py "关键词" --limit 30
 python scripts/search_posts.py "关键词" --uid 60916468
 python scripts/search_posts.py --uid 67145714 --since 2026-08-01
 python scripts/search_posts.py --tid 47288722 --pid 877002447
+python scripts/search_posts.py --tid 47288722 --pid 885930013 --raw
+python scripts/search_posts.py --uid 67142257 --since 2026-10-27 --json --limit 100
 ```
+
+备份按用户和月份保存为 UTF-8 JSONL，`manifest.json` 提供数量和 SHA-256 校验，`coverage.json` 记录抓取范围与缺口。格式、校验、增量导入与导出方法见 [原文备份格式与维护](references/originals-format.md)。原文字段保留为 `raw_bbcode`；`raw_format=html` 时实际为 HTML 页面提取的正文片段，不能声称是站点原始 BBCode。
 
 区分以下身份：
 
@@ -31,6 +35,8 @@ python scripts/search_posts.py --tid 47288722 --pid 877002447
 ```powershell
 python scripts/update_thread.py
 ```
+
+更新脚本会以原文备份恢复已有记录，合并本机来源后自动更新备份及派生索引。原文变化时保留旧版本；本次未返回的已知记录不会从备份删除。提交 GitHub 更新时一并提交 `references/originals/`；不要提交 Cookie 或原始分页缓存。可运行 `python scripts/archive_store.py` 校验全部分片。
 
 若终端临时设置了 `NGA_COOKIE`，更新脚本会使用登录态入口检索全部重点用户的跨版面回复；遇到“系统繁忙”、频率限制或网络错误时最多退避重试 8 次。例如：
 

@@ -7,7 +7,8 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# Keep newly collected forum bodies and page payloads local.
+# Keep raw page payloads and derived local views out of new commits.
+# references/originals/ is the versioned, portable original-text backup.
 # Files already tracked by earlier commits are unaffected by these patterns.
 references/raw-pages*/
 references/sources/

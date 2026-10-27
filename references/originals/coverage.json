@@ -1,0 +1,85 @@
+{
+  "primary_tid": 47288722,
+  "sources": [
+    {
+      "tid": 47288722,
+      "authorid": 150058,
+      "author": "-阿狼-",
+      "role": "op",
+      "rows_reported": 1403,
+      "posts_written": 1400,
+      "total_pages": 71,
+      "complete": true,
+      "source_url": "https://bbs.nga.cn/read.php?tid=47288722&authorid=150058&__output=11",
+      "last_checked_at": "2026-10-25T16:15:04.218409+08:00"
+    },
+    {
+      "tid": 47288722,
+      "authorid": 39700287,
+      "author": "UID:39700287",
+      "role": "priority_user",
+      "rows_reported": 1978,
+      "posts_written": 1950,
+      "total_pages": 99,
+      "complete": true,
+      "source_url": "https://bbs.nga.cn/read.php?tid=47288722&authorid=39700287&__output=11",
+      "last_checked_at": "2026-10-25T16:15:04.218409+08:00"
+    },
+    {
+      "tid": 47288722,
+      "authorid": 60916468,
+      "author": "UID:60916468",
+      "role": "priority_user",
+      "rows_reported": 596,
+      "posts_written": 593,
+      "total_pages": 30,
+      "complete": true,
+      "source_url": "https://bbs.nga.cn/read.php?tid=47288722&authorid=60916468&__output=11",
+      "last_checked_at": "2026-10-25T16:15:04.218409+08:00"
+    },
+    {
+      "tid": 47288722,
+      "authorid": 65329649,
+      "author": "UID:65329649",
+      "role": "priority_user",
+      "rows_reported": 1243,
+      "posts_written": 1236,
+      "total_pages": 63,
+      "complete": true,
+      "source_url": "https://bbs.nga.cn/read.php?tid=47288722&authorid=65329649&__output=11",
+      "last_checked_at": "2026-10-25T16:15:04.218409+08:00"
+    },
+    {
+      "tid": 47288722,
+      "authorid": 67145714,
+      "author": "UID:67145714",
+      "role": "priority_user",
+      "rows_reported": 446,
+      "posts_written": 442,
+      "total_pages": 23,
+      "complete": true,
+      "source_url": "https://bbs.nga.cn/read.php?tid=47288722&authorid=67145714&__output=11",
+      "last_checked_at": "2026-10-25T16:15:04.218409+08:00"
+    },
+    {
+      "tid": 47288722,
+      "authorid": 67142257,
+      "author": "兰斯洛t",
+      "role": "priority_user",
+      "rows_reported": 1946,
+      "row_count_basis": "html_pager_estimate",
+      "posts_written": 1942,
+      "visible_posts_written": 1942,
+      "previously_seen_not_returned": 0,
+      "unresolved_row_difference": 4,
+      "total_pages": 98,
+      "pages_complete": true,
+      "complete": true,
+      "source_url": "https://bbs.nga.cn/read.php?tid=47288722&authorid=67142257",
+      "last_checked_at": "2026-10-27T17:38:04.308611+08:00"
+    }
+  ],
+  "complete_for_registered_sources": false,
+  "cross_forum_complete": false,
+  "note": "Recorded public posts only. Different authors may have different collection times. Unseen cross-thread replies, deleted/invisible content and nested comments may be missing. A server count difference is not proof of deletion."
+}

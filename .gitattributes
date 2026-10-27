@@ -1,0 +1,2 @@
+# Preserve byte-level checksums on Windows and Unix checkouts.
+references/originals/** text eol=lf

@@ -24,7 +24,16 @@ python scripts/audit_primary.py --data-dir /path/to/local/skill --out reports/YY
 - `coverage.json`：每位作者的页数、可见唯一回复数、时间范围、异常和站点报告总数差额。
 - `timeline.csv`：按时间排序的每条可见回复 UID、PID、时间、作者分页位置和原帖链接，不含论坛正文。
 
-本机 `references/sources/` 和合并资料库由更新脚本维护。GitHub 的本次审计提交更新抓取工具、元数据索引与报告；论坛正文缓存不作为新发布内容。
+`references/originals/` 随 skill 发布全部已收录原文，按 UID 与月份分片保存为 UTF-8 JSONL，附带数量、SHA-256 校验和覆盖范围。后续检索默认直接从此备份读取；来源缓存及旧合并视图仍保留兼容用途。详见 [原文备份格式与维护](references/originals-format.md)。
+
+```sh
+python scripts/search_posts.py --uid 67142257 --limit 10
+python scripts/search_posts.py --tid 47288722 --pid 885930013 --raw
+python scripts/archive_store.py
+python scripts/archive_store.py --export /path/to/all-posts.jsonl
+```
+
+更新脚本自动增量维护此备份，同一主键的原文变化会保留旧版本。GitHub 提交包含原文备份；原始分页响应、登录态和本机路径不提交。2026-10-27 的备份初始收录六位作者 11,255 条记录；作者抓取时间不一致，兰斯洛t 的主帖记录更新至当天 16:01，分页推算数与实际解析记录相差 4 条。
 
 `reports/2026-10-27/` 是本次检查结果。`visible_rows_verified` 表示全部被检查页面实际返回的回复都已落入本机归档；删除、隐藏、楼中楼评论、未被发现的跨主题回复无法据此证明完整。若站点总数与返回数不同，差额会明确记录，不能直接写成“已删除”。
 

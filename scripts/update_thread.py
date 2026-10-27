@@ -19,6 +19,11 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
+# Also support callers loading this file directly via importlib.
+if str(Path(__file__).resolve().parent) not in sys.path:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+from archive_store import load_archive, record_key, write_archive, write_coverage
+
 from bs4 import BeautifulSoup
 
 PAGE_SIZE = 20
@@ -478,6 +483,10 @@ def sync_source(tid: int, uid: int, role: str, quick: bool, workers: int) -> dic
         for post in posts:
             handle.write(json.dumps(post, ensure_ascii=False, separators=(",", ":")) + "\n")
 
+    # Successful live refreshes upsert originals immediately. Old repository caches
+    # must not overwrite newer originals when the final merged view is rebuilt.
+    write_archive(posts, REFS / 'originals')
+
     pages_present = sorted(
         int(path.stem.split("-")[-1]) for path in cache_dir.glob("page-*.json")
     )
@@ -607,16 +616,18 @@ def archive_legacy_if_needed(config: dict) -> None:
 
 def load_all_posts() -> list[dict]:
     paths = list(LEGACY.glob("*.jsonl")) + list(SOURCES.glob("*.jsonl"))
-    records: dict[str, dict] = {}
+    records: dict[str, dict] = {record_key(p): p for p in load_archive(REFS / 'originals')}
     for path in paths:
         with path.open(encoding="utf-8") as handle:
             for line in handle:
                 post = json.loads(line)
+                key = record_key(post)
+                if key in records:
+                    continue
                 for field in (
                     "author",
                     "thread_subject",
                     "subject",
-                    "raw_bbcode",
                     "plain_text",
                     "alterinfo",
                 ):
@@ -634,6 +645,13 @@ def load_all_posts() -> list[dict]:
 
 
 def write_combined(posts: list[dict], state: dict) -> None:
+    REFS.mkdir(parents=True, exist_ok=True)
+    write_archive(posts, REFS / 'originals')
+    write_coverage(state, REFS / 'originals')
+    posts = load_archive(REFS / 'originals')
+    for index, post in enumerate(posts):
+        post['filtered_ordinal'] = index
+    state['posts_written'] = len(posts)
     jsonl_path = REFS / "full-posts.jsonl"
     index_path = REFS / "posts-index.tsv"
     md_path = REFS / "full-posts.md"
