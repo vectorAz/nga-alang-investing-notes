@@ -88,6 +88,34 @@ python scripts/update_thread.py --add-thread-for 60916468:主题TID
 
 脚本会尝试从公开用户主题接口发现新主题，并在存在 `NGA_COOKIE` 时使用 `searchpost=1` 发现重点用户回复过的主题，再通过主题“只看作者”接口补齐 PID、原始 BBCode、引用和附件。不得在技能文件、日志或回答中保存或回显 Cookie。即使有登录态，也不要声称全站回复已完整覆盖。
 
+## 导入历史 Excel
+
+历史汇总表只有“发帖时间 / 回复内容”两列，没有 PID 和主题号，用导入脚本并入 `references/originals/`：
+
+```powershell
+python scripts/import_excel_archive.py --workbook "D:\path\狼大回复汇总.xlsx" --dry-run
+python scripts/import_excel_archive.py --workbook "D:\path\狼大回复汇总.xlsx" --batch 20260926
+```
+
+- 主题号按每个 sheet 内引用块出现最多的 tid 推断（如 `pid=...,47288722,...`），该 sheet 整片归入该主题；识别不出时记 0 并在主题列标注“未识别”。
+- 主键写作 `excel:<UID>:<yyyymmddHHMM>:<正文哈希前 12 位>`，不会与站点抓取的 `post:<TID>:<PID>:<UID>` 相撞；这类记录 PID 为空，`source` 为 `excel-archive`。
+- 已在归档中的行按“同用户 + 同时间 + 正文相等或包含”跳过；同一主题开帖被旧日期重复收录时，按正文相似度 ≥ 0.9 跳过，避免出现两个主楼。
+- 来源表的换行已被折叠为空格，记录里用 `text_note` 标注；`plain_text` 由 BBCode 转换，图片转为 `[图片: 路径]`。
+- 工作表名含“兰斯洛”归属 67142257，其余默认 150058，可用 `--default-uid` 覆盖。
+- 待导入记录先写入 `references/_excel_import_<batch>.jsonl` 留底，批次信息登记在 `references/excel-import-meta.json`。
+
+## 导出
+
+按用户分 sheet 导出完整回复到 Excel，数据源为 `references/originals/`（含旧主题、已登记的其他主题与历史 Excel 导入）：
+
+```powershell
+python scripts/export_user_replies.py --out exports/replies.xlsx
+python scripts/export_user_replies.py --out exports/main-only.xlsx --main-only
+python scripts/export_user_replies.py --out exports/po-w.xlsx --uid 39700287
+```
+
+每个 Sheet 按发帖时间升序、同一时间按 PID 升序，列为序号、发送时间、用户、UID、PID、作者分页位、字数、含引用、正文、TID、主题、来源、原帖链接；「来源」区分 `NGA抓取`（有 PID，可定位楼层）与 `Excel归档`（无 PID，链接指向主题）。总览页给出各用户条数、抓取/归档构成与时间范围。需要整库单文件导出时改用 `python scripts/archive_store.py --export 路径.jsonl`。
+
 ## 资料边界
 
 “只看作者”通常覆盖主题内普通楼层，但楼中楼评论、已删除/不可见内容以及未被发现的跨主题回复可能缺失。重点用户在其他主题中的内容采用累计登记制：发现 TID 后使用 `--add-thread` 纳入后续手动更新。

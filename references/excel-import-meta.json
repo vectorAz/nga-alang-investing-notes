@@ -1,33 +1,116 @@
 {
-    "source_workbook":  "狼大回复汇总+20260626-1410\u0026往期.xlsx",
-    "source_path":  "C:\\Users\\1\\Desktop\\狼大回复汇总+20260626-1410\u0026往期.xlsx",
-    "imported_at":  "2026-06-27T13:34:20",
-    "total_unique_posts":  25160,
-    "sheets":  [
-                   {
-                       "sheet":  "2016-2017",
-                       "unique_posts":  4791
-                   },
-                   {
-                       "sheet":  "2020",
-                       "unique_posts":  7226
-                   },
-                   {
-                       "sheet":  "2022",
-                       "unique_posts":  3859
-                   },
-                   {
-                       "sheet":  "2025",
-                       "unique_posts":  5792
-                   },
-                   {
-                       "sheet":  "2026",
-                       "unique_posts":  3393
-                   },
-                   {
-                       "sheet":  "最新一周0626",
-                       "unique_posts":  99
-                   }
-               ],
-    "note":  "Excel archive is authoritative for historical replies. Records do not include NGA PID unless present in the text."
+  "schema_version": 1,
+  "imports": [
+    {
+      "source_workbook": "狼大回复汇总+20260626-1410&往期.xlsx",
+      "imported_at": "2026-06-27T13:34:20",
+      "total_unique_posts": 25160,
+      "sheets": [
+        {
+          "sheet": "2016-2017",
+          "unique_posts": 4791
+        },
+        {
+          "sheet": "2020",
+          "unique_posts": 7226
+        },
+        {
+          "sheet": "2022",
+          "unique_posts": 3859
+        },
+        {
+          "sheet": "2025",
+          "unique_posts": 5792
+        },
+        {
+          "sheet": "2026",
+          "unique_posts": 3393
+        },
+        {
+          "sheet": "最新一周0626",
+          "unique_posts": 99
+        }
+      ],
+      "note": "Excel archive is authoritative for historical replies. Records do not include NGA PID unless present in the text.",
+      "source_path_note": "原始工作簿路径不入库，仅保留文件名"
+    },
+    {
+      "source_workbook": "狼大回复汇总 20260926-0752&往期.xlsx",
+      "batch": "20260926",
+      "imported_at": "2026-10-28T11:36:57",
+      "rows_read": 27576,
+      "internal_duplicates": 4,
+      "already_in_archive": 5748,
+      "matched_thread_opener": 1,
+      "imported_records": 21823,
+      "archive_total_after": 33291,
+      "record_key_pattern": "excel:<uid>:<yyyymmddHHMM>:<sha1(body)[:12]>",
+      "sheets": [
+        {
+          "sheet": "小时代狼大楼（最新一周）",
+          "rows": 55,
+          "uid": 150058,
+          "tid": 47288722,
+          "imported": 0
+        },
+        {
+          "sheet": "兰斯洛t （骑士佬）",
+          "rows": 1196,
+          "uid": 67142257,
+          "tid": 47288722,
+          "imported": 10
+        },
+        {
+          "sheet": "小时代狼大楼（历史存档）",
+          "rows": 823,
+          "uid": 150058,
+          "tid": 47288722,
+          "imported": 1
+        },
+        {
+          "sheet": "小时代鱼大楼",
+          "rows": 94,
+          "uid": 150058,
+          "tid": 47207407,
+          "imported": 94
+        },
+        {
+          "sheet": "2026",
+          "rows": 3737,
+          "uid": 150058,
+          "tid": 45974302,
+          "imported": 50
+        },
+        {
+          "sheet": "2025",
+          "rows": 5795,
+          "uid": 150058,
+          "tid": 43098323,
+          "imported": 5792
+        },
+        {
+          "sheet": "2022",
+          "rows": 3859,
+          "uid": 150058,
+          "tid": 30081858,
+          "imported": 3859
+        },
+        {
+          "sheet": "2020",
+          "rows": 7226,
+          "uid": 150058,
+          "tid": 24900465,
+          "imported": 7226
+        },
+        {
+          "sheet": "2016-2017",
+          "rows": 4791,
+          "uid": 150058,
+          "tid": 8869728,
+          "imported": 4791
+        }
+      ],
+      "note": "工作表只有发帖时间与正文两列，没有 PID；tid 由工作表内引用块推断。正文换行在来源表中已折叠为空格（text_note 标注）。与归档重复的行按同用户+同时间+正文相等或包含跳过，开帖被旧日期重复收录者按相似度>=0.9 跳过。"
+    }
+  ]
 }
