@@ -70,9 +70,11 @@ def main() -> int:
             continue
         preview = post.get('raw_bbcode', '') if args.raw else " ".join((post.get("plain_text") or "").split())[:500]
         location = post.get("source_url") or ""
+        pid = post.get('pid')
+        pid_text = '无（Excel 归档）' if pid is None else pid
         print(
             f"[{date}] {post.get('author')} UID {post.get('authorid')} "
-            f"TID {post.get('tid')} PID {post.get('pid')} [{post.get('tracking_role')}]\n"
+            f"TID {post.get('tid')} PID {pid_text} [{post.get('tracking_role')}]\n"
             f"{location}\n{preview}\n"
         )
         found += 1
