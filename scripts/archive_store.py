@@ -68,6 +68,23 @@ def write_archive(posts: list[dict], root: Path = DEFAULT_ROOT) -> dict:
         if previous is not None and previous.get('raw_bbcode') != post['raw_bbcode']:
             digest = hashlib.sha256(previous['raw_bbcode'].encode('utf-8')).hexdigest()
             revisions[(key, digest)] = {'record_key': key, 'body_sha256': digest, 'previous_record': previous}
+        if previous is not None:
+            # Guest-mode refetches return a thinner payload: no score, minute-precision
+            # timestamps, no edit markers, unresolved author names. When the body is
+            # unchanged, keep the earlier capture and only fill what it never had.
+            if previous.get('raw_bbcode') == post.get('raw_bbcode'):
+                merged = dict(previous)
+                for field, value in post.items():
+                    if field not in merged or merged[field] in (None, '', [], {}):
+                        merged[field] = value
+                post = merged
+            else:
+                for field in ('collection_method', 'raw_format'):
+                    if field in previous and field not in post:
+                        post[field] = previous[field]
+                old_author = str(previous.get('author') or '')
+                if str(post.get('author') or '').startswith('UID') and not old_author.startswith('UID'):
+                    post['author'] = previous['author']
         existing[key] = post
     groups = defaultdict(list)
     for post in existing.values():

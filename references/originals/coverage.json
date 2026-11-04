@@ -6,102 +6,102 @@
       "authorid": 150058,
       "author": "-阿狼-",
       "role": "op",
-      "rows_reported": 1652,
-      "row_count_basis": "json_api",
-      "posts_written": 1648,
-      "visible_posts_written": 1648,
+      "rows_reported": 1699,
+      "row_count_basis": "html_pager_estimate",
+      "posts_written": 1695,
+      "visible_posts_written": 1695,
       "previously_seen_not_returned": 0,
       "unresolved_row_difference": 4,
-      "total_pages": 83,
+      "total_pages": 85,
       "pages_complete": true,
       "complete": true,
       "source_url": "https://bbs.nga.cn/read.php?tid=47288722&authorid=150058&__output=11",
-      "last_checked_at": "2026-11-03T18:06:40.909394+08:00"
+      "last_checked_at": "2026-11-04T16:24:45.704593+08:00"
     },
     {
       "tid": 47288722,
       "authorid": 39700287,
       "author": "UID:39700287",
       "role": "priority_user",
-      "rows_reported": 2302,
+      "rows_reported": 2353,
       "row_count_basis": "json_api",
-      "posts_written": 2272,
-      "visible_posts_written": 2272,
+      "posts_written": 2322,
+      "visible_posts_written": 2322,
       "previously_seen_not_returned": 0,
-      "unresolved_row_difference": 30,
-      "total_pages": 116,
+      "unresolved_row_difference": 31,
+      "total_pages": 118,
       "pages_complete": true,
       "complete": true,
       "source_url": "https://bbs.nga.cn/read.php?tid=47288722&authorid=39700287&__output=11",
-      "last_checked_at": "2026-11-03T18:06:40.909394+08:00"
+      "last_checked_at": "2026-11-04T16:24:45.704593+08:00"
     },
     {
       "tid": 47288722,
       "authorid": 60916468,
       "author": "UID:60916468",
       "role": "priority_user",
-      "rows_reported": 647,
+      "rows_reported": 653,
       "row_count_basis": "json_api",
-      "posts_written": 644,
-      "visible_posts_written": 644,
+      "posts_written": 650,
+      "visible_posts_written": 650,
       "previously_seen_not_returned": 0,
       "unresolved_row_difference": 3,
       "total_pages": 33,
       "pages_complete": true,
       "complete": true,
       "source_url": "https://bbs.nga.cn/read.php?tid=47288722&authorid=60916468&__output=11",
-      "last_checked_at": "2026-11-03T18:06:40.909394+08:00"
+      "last_checked_at": "2026-11-04T16:24:45.704593+08:00"
     },
     {
       "tid": 47288722,
       "authorid": 65329649,
       "author": "UID:65329649",
       "role": "priority_user",
-      "rows_reported": 1243,
-      "row_count_basis": "html_pager_estimate",
+      "rows_reported": 1244,
+      "row_count_basis": "json_api",
       "posts_written": 1236,
       "visible_posts_written": 1236,
       "previously_seen_not_returned": 0,
-      "unresolved_row_difference": 7,
+      "unresolved_row_difference": 8,
       "total_pages": 63,
       "pages_complete": true,
       "complete": true,
       "source_url": "https://bbs.nga.cn/read.php?tid=47288722&authorid=65329649&__output=11",
-      "last_checked_at": "2026-11-03T18:06:40.909394+08:00"
+      "last_checked_at": "2026-11-04T16:24:45.704593+08:00"
     },
     {
       "tid": 47288722,
       "authorid": 67142257,
       "author": "UID:67142257",
       "role": "priority_user",
-      "rows_reported": 2125,
+      "rows_reported": 2187,
       "row_count_basis": "json_api",
-      "posts_written": 2121,
-      "visible_posts_written": 2121,
+      "posts_written": 2183,
+      "visible_posts_written": 2183,
       "previously_seen_not_returned": 0,
       "unresolved_row_difference": 4,
-      "total_pages": 107,
+      "total_pages": 110,
       "pages_complete": true,
       "complete": true,
       "source_url": "https://bbs.nga.cn/read.php?tid=47288722&authorid=67142257&__output=11",
-      "last_checked_at": "2026-11-03T18:06:40.909394+08:00"
+      "last_checked_at": "2026-11-04T16:24:45.704593+08:00"
     },
     {
       "tid": 47288722,
       "authorid": 67145714,
       "author": "UID:67145714",
       "role": "priority_user",
-      "rows_reported": 564,
-      "row_count_basis": "html_pager_estimate",
-      "posts_written": 557,
-      "visible_posts_written": 557,
+      "rows_reported": 580,
+      "row_count_basis": "json_api",
+      "posts_written": 573,
+      "visible_posts_written": 573,
       "previously_seen_not_returned": 0,
       "unresolved_row_difference": 7,
       "total_pages": 29,
       "pages_complete": true,
       "complete": true,
       "source_url": "https://bbs.nga.cn/read.php?tid=47288722&authorid=67145714&__output=11",
-      "last_checked_at": "2026-11-03T18:06:40.909394+08:00"
+      "last_checked_at": "2026-11-04T16:24:45.704593+08:00"
     },
     {
       "tid": 18718025,
@@ -118,7 +118,7 @@
       "pages_complete": true,
       "complete": true,
       "source_url": "https://bbs.nga.cn/read.php?tid=18718025&authorid=60916468&__output=11",
-      "last_checked_at": "2026-11-03T18:06:40.909394+08:00"
+      "last_checked_at": "2026-11-04T16:24:45.704593+08:00"
     },
     {
       "tid": 40961485,
@@ -135,7 +135,7 @@
       "pages_complete": true,
       "complete": true,
       "source_url": "https://bbs.nga.cn/read.php?tid=40961485&authorid=39700287&__output=11",
-      "last_checked_at": "2026-11-03T18:06:40.909394+08:00"
+      "last_checked_at": "2026-11-04T16:24:45.704593+08:00"
     },
     {
       "tid": 41011862,
@@ -152,7 +152,7 @@
       "pages_complete": true,
       "complete": true,
       "source_url": "https://bbs.nga.cn/read.php?tid=41011862&authorid=39700287&__output=11",
-      "last_checked_at": "2026-11-03T18:06:40.909394+08:00"
+      "last_checked_at": "2026-11-04T16:24:45.704593+08:00"
     },
     {
       "tid": 41029438,
@@ -160,7 +160,7 @@
       "author": "UID:39700287",
       "role": "priority_user",
       "rows_reported": 2,
-      "row_count_basis": "html_pager_estimate",
+      "row_count_basis": "json_api",
       "posts_written": 2,
       "visible_posts_written": 2,
       "previously_seen_not_returned": 0,
@@ -169,7 +169,7 @@
       "pages_complete": true,
       "complete": true,
       "source_url": "https://bbs.nga.cn/read.php?tid=41029438&authorid=39700287&__output=11",
-      "last_checked_at": "2026-11-03T18:06:40.909394+08:00"
+      "last_checked_at": "2026-11-04T16:24:45.704593+08:00"
     },
     {
       "tid": 47043642,
@@ -177,7 +177,7 @@
       "author": "UID:67145714",
       "role": "priority_user",
       "rows_reported": 4,
-      "row_count_basis": "html_pager_estimate",
+      "row_count_basis": "json_api",
       "posts_written": 4,
       "visible_posts_written": 4,
       "previously_seen_not_returned": 0,
@@ -186,7 +186,7 @@
       "pages_complete": true,
       "complete": true,
       "source_url": "https://bbs.nga.cn/read.php?tid=47043642&authorid=67145714&__output=11",
-      "last_checked_at": "2026-11-03T18:06:40.909394+08:00"
+      "last_checked_at": "2026-11-04T16:24:45.704593+08:00"
     },
     {
       "tid": 47212751,
@@ -194,7 +194,7 @@
       "author": "UID:39700287",
       "role": "priority_user",
       "rows_reported": 8,
-      "row_count_basis": "html_pager_estimate",
+      "row_count_basis": "json_api",
       "posts_written": 8,
       "visible_posts_written": 8,
       "previously_seen_not_returned": 0,
@@ -203,7 +203,7 @@
       "pages_complete": true,
       "complete": true,
       "source_url": "https://bbs.nga.cn/read.php?tid=47212751&authorid=39700287&__output=11",
-      "last_checked_at": "2026-11-03T18:06:40.909394+08:00"
+      "last_checked_at": "2026-11-04T16:24:45.704593+08:00"
     },
     {
       "tid": 47223716,
@@ -220,7 +220,7 @@
       "pages_complete": true,
       "complete": true,
       "source_url": "https://bbs.nga.cn/read.php?tid=47223716&authorid=39700287&__output=11",
-      "last_checked_at": "2026-11-03T18:06:40.909394+08:00"
+      "last_checked_at": "2026-11-04T16:24:45.704593+08:00"
     },
     {
       "tid": 47230215,
@@ -237,7 +237,7 @@
       "pages_complete": true,
       "complete": true,
       "source_url": "https://bbs.nga.cn/read.php?tid=47230215&authorid=39700287&__output=11",
-      "last_checked_at": "2026-11-03T18:06:40.909394+08:00"
+      "last_checked_at": "2026-11-04T16:24:45.704593+08:00"
     },
     {
       "tid": 47230215,
@@ -254,7 +254,7 @@
       "pages_complete": true,
       "complete": true,
       "source_url": "https://bbs.nga.cn/read.php?tid=47230215&authorid=67142257&__output=11",
-      "last_checked_at": "2026-11-03T18:06:40.909394+08:00"
+      "last_checked_at": "2026-11-04T16:24:45.704593+08:00"
     },
     {
       "tid": 47230215,
@@ -271,7 +271,7 @@
       "pages_complete": true,
       "complete": true,
       "source_url": "https://bbs.nga.cn/read.php?tid=47230215&authorid=67145714&__output=11",
-      "last_checked_at": "2026-11-03T18:06:40.909394+08:00"
+      "last_checked_at": "2026-11-04T16:24:45.704593+08:00"
     },
     {
       "tid": 47239653,
@@ -288,7 +288,7 @@
       "pages_complete": true,
       "complete": true,
       "source_url": "https://bbs.nga.cn/read.php?tid=47239653&authorid=39700287&__output=11",
-      "last_checked_at": "2026-11-03T18:06:40.909394+08:00"
+      "last_checked_at": "2026-11-04T16:24:45.704593+08:00"
     },
     {
       "tid": 47239653,
@@ -305,7 +305,7 @@
       "pages_complete": true,
       "complete": true,
       "source_url": "https://bbs.nga.cn/read.php?tid=47239653&authorid=65329649&__output=11",
-      "last_checked_at": "2026-11-03T18:06:40.909394+08:00"
+      "last_checked_at": "2026-11-04T16:24:45.704593+08:00"
     },
     {
       "tid": 47247460,
@@ -322,7 +322,7 @@
       "pages_complete": true,
       "complete": true,
       "source_url": "https://bbs.nga.cn/read.php?tid=47247460&authorid=67145714&__output=11",
-      "last_checked_at": "2026-11-03T18:06:40.909394+08:00"
+      "last_checked_at": "2026-11-04T16:24:45.704593+08:00"
     },
     {
       "tid": 47566311,
@@ -339,7 +339,7 @@
       "pages_complete": true,
       "complete": true,
       "source_url": "https://bbs.nga.cn/read.php?tid=47566311&authorid=39700287&__output=11",
-      "last_checked_at": "2026-11-03T18:06:40.909394+08:00"
+      "last_checked_at": "2026-11-04T16:24:45.704593+08:00"
     }
   ],
   "complete_for_registered_sources": false,
