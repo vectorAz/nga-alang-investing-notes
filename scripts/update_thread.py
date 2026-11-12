@@ -338,13 +338,36 @@ def collect_urls(raw: str, row: dict) -> tuple[list[str], list[str], list[dict]]
     return sorted(set(link_urls)), sorted(set(images)), attachments
 
 
+_ALIAS_CACHE: dict[str, str] | None = None
+
+
+def known_aliases() -> dict[str, str]:
+    """Handles for priority users, resolved from tracking-config.json.
+
+    Guest captures get masked usernames ("UID:<uid>"), so the real handles live in the
+    config and are applied here instead of being re-derived on every capture.
+    """
+    global _ALIAS_CACHE
+    if _ALIAS_CACHE is None:
+        try:
+            config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+            raw = config.get("priority_aliases") or {}
+        except (OSError, json.JSONDecodeError):
+            raw = {}
+        _ALIAS_CACHE = {str(key): str(value) for key, value in raw.items()}
+    return _ALIAS_CACHE
+
+
 def user_name(data: dict, uid: int) -> str:
     users = data.get("data", {}).get("__U", {}) or {}
     entry = users.get(str(uid)) or users.get(uid) or {}
-    name = entry.get("username") if isinstance(entry, dict) else ""
-    if uid == 150058:
-        return "-阿狼-"
-    return repair_text(name or f"UID {uid}")
+    name = repair_text(entry.get("username") if isinstance(entry, dict) else "")
+    if name and not name.startswith("UID"):
+        return name
+    alias = known_aliases().get(str(uid))
+    if alias:
+        return alias
+    return name or f"UID:{uid}"
 
 
 def normalize(row: dict, tid: int, uid: int, author: str, role: str, subject: str) -> dict:
