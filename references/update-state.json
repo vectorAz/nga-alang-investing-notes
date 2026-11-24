@@ -64,7 +64,7 @@
  "newly_discovered_reply_threads": {},
  "reply_search": [],
  "primary_thread_url": "https://bbs.nga.cn/read.php?tid=47288722",
- "posts_written": 10619,
+ "posts_written": 10675,
  "sources": [
   {
    "tid": 47288722,
@@ -72,14 +72,14 @@
    "author": "-阿狼-",
    "role": "op",
    "subject": "自立自强，科学技术打头阵----救赎版",
-   "rows_reported": 2199,
+   "rows_reported": 2221,
    "row_count_basis": "json_api",
-   "posts_written": 2189,
-   "visible_posts_written": 2189,
+   "posts_written": 2211,
+   "visible_posts_written": 2211,
    "previously_seen_not_returned": 0,
    "unresolved_row_difference": 10,
    "row_difference_note": "A count difference is not proof of deletion; inspect page and row diagnostics.",
-   "total_pages": 110,
+   "total_pages": 112,
    "pages_present": [
     1,
     2,
@@ -190,14 +190,16 @@
     107,
     108,
     109,
-    110
+    110,
+    111,
+    112
    ],
    "pages_complete": true,
    "cached_fallback_pages": [],
    "complete": true,
    "source_file": "references/sources/tid-47288722-uid-150058.jsonl",
    "source_url": "https://bbs.nga.cn/read.php?tid=47288722&authorid=150058&__output=11",
-   "last_synced_at": "2026-11-24 10:53:07"
+   "last_synced_at": "2026-11-24 13:54:52"
   },
   {
    "tid": 47288722,
@@ -205,10 +207,10 @@
    "author": "PoW",
    "role": "priority_user",
    "subject": "自立自强，科学技术打头阵----救赎版",
-   "rows_reported": 2522,
+   "rows_reported": 2524,
    "row_count_basis": "json_api",
-   "posts_written": 2490,
-   "visible_posts_written": 2490,
+   "posts_written": 2492,
+   "visible_posts_written": 2492,
    "previously_seen_not_returned": 1,
    "unresolved_row_difference": 32,
    "row_difference_note": "A count difference is not proof of deletion; inspect page and row diagnostics.",
@@ -347,7 +349,7 @@
    "complete": true,
    "source_file": "references/sources/tid-47288722-uid-39700287.jsonl",
    "source_url": "https://bbs.nga.cn/read.php?tid=47288722&authorid=39700287&__output=11",
-   "last_synced_at": "2026-11-24 10:53:07"
+   "last_synced_at": "2026-11-24 13:54:52"
   },
   {
    "tid": 47288722,
@@ -355,14 +357,14 @@
    "author": "灰兔尾",
    "role": "priority_user",
    "subject": "自立自强，科学技术打头阵----救赎版",
-   "rows_reported": 858,
+   "rows_reported": 865,
    "row_count_basis": "html_pager_estimate",
-   "posts_written": 855,
-   "visible_posts_written": 855,
+   "posts_written": 862,
+   "visible_posts_written": 862,
    "previously_seen_not_returned": 0,
    "unresolved_row_difference": 3,
    "row_difference_note": "A count difference is not proof of deletion; inspect page and row diagnostics.",
-   "total_pages": 43,
+   "total_pages": 44,
    "pages_present": [
     1,
     2,
@@ -406,14 +408,15 @@
     40,
     41,
     42,
-    43
+    43,
+    44
    ],
    "pages_complete": true,
    "cached_fallback_pages": [],
    "complete": true,
    "source_file": "references/sources/tid-47288722-uid-60916468.jsonl",
    "source_url": "https://bbs.nga.cn/read.php?tid=47288722&authorid=60916468&__output=11",
-   "last_synced_at": "2026-11-24 10:53:07"
+   "last_synced_at": "2026-11-24 13:54:52"
   },
   {
    "tid": 47288722,
@@ -421,12 +424,12 @@
    "author": "zippo578",
    "role": "priority_user",
    "subject": "自立自强，科学技术打头阵----救赎版",
-   "rows_reported": 1243,
+   "rows_reported": 1244,
    "row_count_basis": "json_api",
    "posts_written": 1236,
    "visible_posts_written": 1236,
    "previously_seen_not_returned": 0,
-   "unresolved_row_difference": 7,
+   "unresolved_row_difference": 8,
    "row_difference_note": "A count difference is not proof of deletion; inspect page and row diagnostics.",
    "total_pages": 63,
    "pages_present": [
@@ -499,7 +502,7 @@
    "complete": true,
    "source_file": "references/sources/tid-47288722-uid-65329649.jsonl",
    "source_url": "https://bbs.nga.cn/read.php?tid=47288722&authorid=65329649&__output=11",
-   "last_synced_at": "2026-11-24 10:53:07"
+   "last_synced_at": "2026-11-24 13:54:52"
   },
   {
    "tid": 47288722,
@@ -507,14 +510,14 @@
    "author": "兰斯洛t",
    "role": "priority_user",
    "subject": "自立自强，科学技术打头阵----救赎版",
-   "rows_reported": 3085,
+   "rows_reported": 3108,
    "row_count_basis": "json_api",
-   "posts_written": 3079,
-   "visible_posts_written": 3079,
+   "posts_written": 3102,
+   "visible_posts_written": 3102,
    "previously_seen_not_returned": 0,
    "unresolved_row_difference": 6,
    "row_difference_note": "A count difference is not proof of deletion; inspect page and row diagnostics.",
-   "total_pages": 155,
+   "total_pages": 156,
    "pages_present": [
     1,
     2,
@@ -670,14 +673,15 @@
     152,
     153,
     154,
-    155
+    155,
+    156
    ],
    "pages_complete": true,
    "cached_fallback_pages": [],
    "complete": true,
    "source_file": "references/sources/tid-47288722-uid-67142257.jsonl",
    "source_url": "https://bbs.nga.cn/read.php?tid=47288722&authorid=67142257&__output=11",
-   "last_synced_at": "2026-11-24 10:53:07"
+   "last_synced_at": "2026-11-24 13:54:52"
   },
   {
    "tid": 47288722,
@@ -685,14 +689,14 @@
    "author": "Plezl",
    "role": "priority_user",
    "subject": "自立自强，科学技术打头阵----救赎版",
-   "rows_reported": 778,
+   "rows_reported": 782,
    "row_count_basis": "json_api",
-   "posts_written": 770,
-   "visible_posts_written": 770,
+   "posts_written": 772,
+   "visible_posts_written": 772,
    "previously_seen_not_returned": 0,
-   "unresolved_row_difference": 8,
+   "unresolved_row_difference": 10,
    "row_difference_note": "A count difference is not proof of deletion; inspect page and row diagnostics.",
-   "total_pages": 39,
+   "total_pages": 40,
    "pages_present": [
     1,
     2,
@@ -732,14 +736,15 @@
     36,
     37,
     38,
-    39
+    39,
+    40
    ],
    "pages_complete": true,
    "cached_fallback_pages": [],
    "complete": true,
    "source_file": "references/sources/tid-47288722-uid-67145714.jsonl",
    "source_url": "https://bbs.nga.cn/read.php?tid=47288722&authorid=67145714&__output=11",
-   "last_synced_at": "2026-11-24 10:53:07"
+   "last_synced_at": "2026-11-24 13:54:52"
   },
   {
    "tid": 18718025,
@@ -2028,7 +2033,7 @@
  ],
  "complete_for_registered_sources": false,
  "cross_forum_complete": false,
- "cross_forum_note": "primary-thread-only refresh | 2026-11-24 10:53:07 主帖六位用户单点刷新；跨主题 sources 仍为 2026-11-04 快照 | （跨主题 14 条来源仍为 2026-11-04 快照，本次只刷新主帖六位用户）",
+ "cross_forum_note": "primary-thread-only refresh | 2026-11-24 10:53:07 主帖六位用户单点刷新；跨主题 sources 仍为 2026-11-04 快照 | （跨主题 14 条来源仍为 2026-11-04 快照，本次只刷新主帖六位用户） | 2026-11-24 13:54:52 主帖六位用户单点刷新至 2026-11-24 13:54:52；跨主题 14 条 sources 仍为 2026-11-04 快照",
  "authenticated_discovery": false,
- "updated_at": "2026-11-24 10:53:07"
+ "updated_at": "2026-11-24 13:54:52"
 }
