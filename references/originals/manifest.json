@@ -4,18 +4,18 @@
   "timezone": "Asia/Shanghai",
   "primary_key": "record_key",
   "body_field": "raw_bbcode",
-  "total_records": 35010,
+  "total_records": 36180,
   "counts_by_uid": {
-    "150058": 27356,
-    "39700287": 2438,
-    "60916468": 694,
+    "150058": 27694,
+    "39700287": 2523,
+    "60916468": 856,
     "65329649": 1237,
-    "67142257": 2607,
-    "67145714": 678
+    "67142257": 3090,
+    "67145714": 780
   },
   "earliest": "2016-01-02 22:08",
-  "latest": "2026-11-12 10:09",
-  "revision_count": 0,
+  "latest": "2026-11-24 10:50",
+  "revision_count": 1,
   "files": [
     {
       "path": "users/150058/2016-01.jsonl",
@@ -460,8 +460,8 @@
     {
       "path": "users/150058/2026-07.jsonl",
       "records": 282,
-      "bytes": 340830,
-      "sha256": "849f6bed0a7ccbfd43e4aed3d715aa0cd016c0393b0678f755d8cb2e377de980",
+      "bytes": 353870,
+      "sha256": "ba4f35013c0ee9e8e109213e895374222689884196958983f93edaff474d6071",
       "earliest": "2026-07-01 12:22",
       "latest": "2026-07-31 15:39"
     },
@@ -491,11 +491,11 @@
     },
     {
       "path": "users/150058/2026-11.jsonl",
-      "records": 265,
-      "bytes": 295217,
-      "sha256": "386f7ccefc3b925c5b7aaab786456ac9277a91d16e5600b9fae703d72b6b416e",
+      "records": 603,
+      "bytes": 695224,
+      "sha256": "51323c5ba81567ed33ca888fc1213a43ab6129f70188c54a5497110dc4d30a9b",
       "earliest": "2026-11-02 10:22",
-      "latest": "2026-11-12 10:09"
+      "latest": "2026-11-24 10:47"
     },
     {
       "path": "users/39700287/2024-07.jsonl",
@@ -539,11 +539,11 @@
     },
     {
       "path": "users/39700287/2026-11.jsonl",
-      "records": 225,
-      "bytes": 252469,
-      "sha256": "b0839da08e4e3243673ec615de046770fed3f116e222cc3a1d7abc4c967c9bc7",
+      "records": 310,
+      "bytes": 345977,
+      "sha256": "98683bf449eafee212ccd53c2498e15d9e87b6649d0b5f7d71115802fe2c7aad",
       "earliest": "2026-11-01 00:16",
-      "latest": "2026-11-12 10:04"
+      "latest": "2026-11-24 00:48"
     },
     {
       "path": "users/60916468/2019-09.jsonl",
@@ -587,11 +587,11 @@
     },
     {
       "path": "users/60916468/2026-11.jsonl",
-      "records": 59,
-      "bytes": 59930,
-      "sha256": "1c6d9fb727daf3460bf4ebf351eee2a31ba337faabfa18355eb1bba3254dd947",
+      "records": 221,
+      "bytes": 241791,
+      "sha256": "d47ab165bca374bc07659006cd92e92e24d3a4cd66d44f40f7a30c2f93f84f02",
       "earliest": "2026-11-02 18:20",
-      "latest": "2026-11-12 09:34"
+      "latest": "2026-11-24 10:36"
     },
     {
       "path": "users/65329649/2026-07.jsonl",
@@ -659,11 +659,11 @@
     },
     {
       "path": "users/67142257/2026-11.jsonl",
-      "records": 555,
-      "bytes": 513276,
-      "sha256": "c44842380e051393ffb8df9602e89bdc58c33509ca133546f0e03b47ecebf1ca",
+      "records": 1038,
+      "bytes": 969726,
+      "sha256": "014f594fd78e9256789ca8c3d98c34dc89a8faba028f85f40630edd1d79f0809",
       "earliest": "2026-11-02 01:26",
-      "latest": "2026-11-12 10:07"
+      "latest": "2026-11-24 10:50"
     },
     {
       "path": "users/67145714/2026-06.jsonl",
@@ -707,11 +707,12 @@
     },
     {
       "path": "users/67145714/2026-11.jsonl",
-      "records": 143,
-      "bytes": 152948,
-      "sha256": "d1a509c29b2f3a3b95cb6b43b03bbf76566c59dace2d10f30bef0c95848d98cd",
+      "records": 245,
+      "bytes": 260422,
+      "sha256": "0870bfda2be7f65c3e71b95f6f1edd9d38fd9e4d501893f979827e920674156f",
       "earliest": "2026-11-01 00:01",
-      "latest": "2026-11-12 10:03"
+      "latest": "2026-11-24 01:52"
     }
-  ]
+  ],
+  "revisions_sha256": "ef215ccded664b6049a2d86a4a647e78dcaee51ae0a59c71944b106acdd39643"
 }
